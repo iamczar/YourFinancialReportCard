@@ -1,0 +1,70 @@
+
+@startuml
+
+package "Bank Statements" {
+    [Bank Statement 1]
+    [Bank Statement 2]
+    [Bank Statement 3]
+}
+
+database "Data Base" {
+    [List Of Income]
+    [List Of Expenses]
+    [List Of Investments]
+    [List of Savings]
+}
+
+
+package "Income Category" {
+    [Full Time Job]
+    [Investments]
+    [Misc]
+}
+
+package "Expenses Category" {
+    [Amazon]
+    [Food Takeaway]
+    [Food Shoping]
+    [Transport]
+    [Etc]
+}
+
+package "Investment Category"{
+    [T212]
+    [Coinbase]
+}
+
+package "Savings Category"{
+    [Personal Savings Account]
+    [Joint Savings Account]
+}
+
+[Bank Statement 1]-->[DataParser]
+[Bank Statement 2]-->[DataParser]
+[Bank Statement 3]-->[DataParser]
+
+[DataParser]-->[List Of Income]
+[DataParser]-->[List Of Expenses]
+[DataParser]-->[List Of Investments]
+[DataParser]-->[List of Savings]
+
+[List Of Expenses]-->[Amazon]
+[List Of Expenses]-->[Food Shoping]
+[List Of Expenses]-->[Food Takeaway]
+[List Of Expenses]-->[Transport]
+[List Of Expenses]-->[Etc]
+
+[List Of Income]-->[Full Time Job]
+[List Of Income]-->[Investments]
+[List Of Income]-->[Misc]
+
+[List Of Investments]-->[T212]
+[List Of Investments]-->[Coinbase]
+
+[List of Savings]-->[Personal Savings Account]
+[List of Savings]-->[Joint Savings Account]
+
+@enduml
+
+
+

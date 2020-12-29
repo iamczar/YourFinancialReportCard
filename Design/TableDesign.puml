@@ -1,0 +1,11 @@
+# example table
+
+
+@startjson
+{
+   "Date":"01/04/2020, 02 Mar 2020, ",
+   "Transaction Type":"BAC,INT,Purchase,Payment",
+   "Description":"'PAYPAL *TRAINLINE 35314369001 GBR",
+   "Value":300.00
+}
+@endjson
