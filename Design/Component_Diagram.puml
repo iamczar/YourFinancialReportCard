@@ -8,12 +8,10 @@ package "Bank Statements" {
 }
 
 database "Data Base" {
-    [List Of Income]
-    [List Of Expenses]
-    [List Of Investments]
-    [List of Savings]
+    [Category]
+    [Transaction]
+    [Statement]
 }
-
 
 package "Income Category" {
     [Full Time Job]
@@ -39,30 +37,30 @@ package "Savings Category"{
     [Joint Savings Account]
 }
 
-[Bank Statement 1]-->[DataParser]
-[Bank Statement 2]-->[DataParser]
-[Bank Statement 3]-->[DataParser]
+[Bank Statement 1]-->[WebServer]
+[Bank Statement 2]-->[WebServer]
+[Bank Statement 3]-->[WebServer]
 
-[DataParser]-->[List Of Income]
-[DataParser]-->[List Of Expenses]
-[DataParser]-->[List Of Investments]
-[DataParser]-->[List of Savings]
+[DataParser]-->[Transaction]
 
-[List Of Expenses]-->[Amazon]
-[List Of Expenses]-->[Food Shoping]
-[List Of Expenses]-->[Food Takeaway]
-[List Of Expenses]-->[Transport]
-[List Of Expenses]-->[Etc]
+[Category]-->[Amazon]
+[Category]-->[Food Shoping]
+[Category]-->[Food Takeaway]
+[Category]-->[Transport]
+[Category]-->[Etc]
 
-[List Of Income]-->[Full Time Job]
-[List Of Income]-->[Investments]
-[List Of Income]-->[Misc]
+[Category]-->[Full Time Job]
+[Category]-->[Investments]
+[Category]-->[Misc]
 
-[List Of Investments]-->[T212]
-[List Of Investments]-->[Coinbase]
+[Category]-->[T212]
+[Category]-->[Coinbase]
 
-[List of Savings]-->[Personal Savings Account]
-[List of Savings]-->[Joint Savings Account]
+[Category]-->[Personal Savings Account]
+[Category]-->[Joint Savings Account]
+
+[WebServer]-->[Statement]
+[WebServer]-->[DataParser]
 
 @enduml
 
