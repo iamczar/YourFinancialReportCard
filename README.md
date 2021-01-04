@@ -15,3 +15,9 @@ javac --version
 
 sudo apt install graphviz
 
+sudo apt-get install sqlite3
+
+sudo apt-get install sqlitebrowser
+
+
+
