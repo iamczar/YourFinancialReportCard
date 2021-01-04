@@ -15,9 +15,20 @@ javac --version
 
 sudo apt install graphviz
 
+# I had to install a database?
+
 sudo apt-get install sqlite3
 
 sudo apt-get install sqlitebrowser
+
+# I need a webserver so I install flask
+https://linuxize.com/post/how-to-install-flask-on-ubuntu-20-04/
+
+# If you dont have pip - im using python 3
+sudo apt install python3-pip
+
+# install flask
+pip3 install Flask
 
 
 
