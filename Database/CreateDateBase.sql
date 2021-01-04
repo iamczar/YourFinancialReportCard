@@ -1,0 +1,20 @@
+CREATE TABLE "Category" (
+	"ID"	INTEGER PRIMARY KEY AUTOINCREMENT,
+	"Name"	TEXT UNIQUE
+)
+
+CREATE TABLE "Statement" (
+	"ID"	INTEGER PRIMARY KEY AUTOINCREMENT,
+	"Name"	TEXT UNIQUE,
+	"TimeStamp"	INTEGER
+)
+
+CREATE TABLE "Transaction" (
+	"ID"	INTEGER PRIMARY KEY AUTOINCREMENT,
+	"Date"	INTEGER,
+	"TransactionType"	TEXT,
+	"Description"	TEXT,
+	"Value"	REAL,
+	"CategoryID"	INTEGER,
+	FOREIGN KEY("CategoryID") REFERENCES "Category"("ID")
+)
