@@ -30,5 +30,8 @@ sudo apt install python3-pip
 # install flask
 pip3 install Flask
 
+# An example how to use python and flask with sqlite
+https://pythonbasics.org/flask-sqlite/
+
 
 
