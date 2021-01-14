@@ -9,7 +9,7 @@ app.secret_key = "secret key"
 #It will allow below 16MB contents only, you can change it
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
-path_to_bankstatement = "/home/czar/YourFinancialReportCard/Project/BankStatements"
+path_to_bankstatement = "../BankStatements"
 UPLOAD_FOLDER = os.path.join(path_to_bankstatement,'uploads')
 
 # Make directory if uploads is not exists
