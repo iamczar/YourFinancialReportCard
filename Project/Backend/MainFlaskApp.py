@@ -33,14 +33,10 @@ def allowed_file(filename):
 
 @app.route('/upload-bankstatements')
 def upload_form():
-    print("am i here")
     return render_template('upload_bankstatements.html')
 
 @app.route('/upload-bankstatements',methods = ['POST'])
 def upload_file():
-
-    print("getting here")
-
     if request.method == 'POST':
         if 'files[]' not in request.files:
             flash('No file part')
