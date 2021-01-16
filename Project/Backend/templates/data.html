@@ -35,8 +35,13 @@
                 { type: 'button', id: 'upload', text: 'Upload files', img: 'icon-page' }
             ],
             onClick: function (event) {
-                if (event.target == 'upload') w2popup.load({ url: '/upload-bankstatements.html', showMax: true });
-            }
+                if (event.target == 'upload'){
+                    w2popup.load({ 
+                        url: '/upload-bankstatements.html', 
+                        showMax: true
+                    });
+                }
+            }            
         });
 
         $('#grid').w2grid({ 
