@@ -50,6 +50,9 @@ def upload_file():
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
         flash('File(s) successfully uploaded')
+
+        # This is where we invole the method file parse method
+
         return redirect('/upload-bankstatements')
 
 
