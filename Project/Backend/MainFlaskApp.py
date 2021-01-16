@@ -54,9 +54,11 @@ def settings():
 @app.route('/upload-bankstatements',methods = ['POST'])
 def upload_file():
     if request.method == 'POST':
+        print(request.files)
         if 'files[]' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
+            return 'No file part'
+            #return flash('No file part')
+            #return redirect('/data?upload=true')
 
         files = request.files.getlist('files[]')
 
@@ -65,8 +67,8 @@ def upload_file():
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-        flash('File(s) successfully uploaded')
-        return redirect('/upload-bankstatements')
+        return 'File(s) successfully uploaded'
+        #return redirect('/data?upload=true')
 
 
 if __name__ == "__main__":

@@ -25,6 +25,15 @@
         </div>
         <div id="toolbar" style="padding: 4px; border: 1px solid #dfdfdf; border-radius: 3px"></div>
         <div id="grid" style="height: 350px;"></div>
+        <div id="popup1" style="display: none; width: 600px; height: 400px; overflow: hidden">
+            <div rel="title">
+                Upload Bank Statements
+            </div>
+            <div rel="body" style="padding: 10px; line-height: 150%">
+                <input type="file" id="file-input" accept="text/csv" multiple/>
+                <button class="btn btn-secondary" id="upload-button">Upload File</button>       
+            </div>
+        </div>
     </div>
 
     <script type="text/javascript">
@@ -36,10 +45,7 @@
             ],
             onClick: function (event) {
                 if (event.target == 'upload'){
-                    w2popup.load({ 
-                        url: '/upload-bankstatements.html', 
-                        showMax: true
-                    });
+                    $('#popup1').w2popup();
                 }
             }            
         });
@@ -76,7 +82,56 @@
                 { recid: 24, fname: 'Manny', lname: 'Silver', email: 'jdoe@gmail.com', sdate: '4/3/2012' },
                 { recid: 25, fname: 'Ben', lname: 'Gatos', email: 'jdoe@gmail.com', sdate: '4/3/2012' }
             ]
-        });    
+        });
+
+        $(document).on('click', '#upload-button', function(event){
+            const fileInput = $('#file-input')[0];
+
+            if(fileInput.files.length == 0) {
+                alert('Error : No file selected');
+                return;
+            }
+
+            let file = fileInput.files[0];
+            let allowed_mime_types = [ 'text/csv' ];
+            let allowed_size_mb = 2;
+        
+            if(allowed_mime_types.indexOf(file.type) == -1) {
+                alert('Error : Incorrect file type');
+                return;
+            }
+
+            if(file.size > allowed_size_mb*1024*1024) {
+                alert('Error : Exceeded size');
+                return;
+            }
+
+            let data = new FormData();
+            Array.prototype.forEach.call(fileInput.files, function(file) { data.append('files[]', file) });
+
+            let request = new XMLHttpRequest();
+            request.open('POST', '/upload-bankstatements'); 
+
+            // upload progress event
+            request.upload.addEventListener('progress', function(e) {
+                let percent_complete = (e.loaded / e.total)*100;
+                
+                // percentage of upload completed
+                console.log(percent_complete);
+            });
+
+            // AJAX request finished event
+            request.addEventListener('load', function(e) {
+                // HTTP status message
+                console.log(request.status);
+
+                // request.response will hold the response from the server
+                console.log(request.response);
+            });
+
+            // send POST request to server side script
+            request.send(data);
+        });
     });
     </script>
 </body>
