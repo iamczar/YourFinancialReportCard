@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="static/css/w2ui-1.4.min.css" />
     <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="static/css/style.css" />
     <script src="static/scripts/jquery.min.js"></script>
     <script type="text/javascript" src="static/scripts/w2ui-1.4.min.js"></script>
     <script type="text/javascript" src="static/scripts/bootstrap.min.js"></script>
@@ -25,13 +26,13 @@
         </div>
         <div id="toolbar" style="padding: 4px; border: 1px solid #dfdfdf; border-radius: 3px"></div>
         <div id="grid" style="height: 350px;"></div>
-        <div id="popup1" style="display: none; width: 600px; height: 400px; overflow: hidden">
+        <div id="popup1" style="display: none; width: 600px; height: 400px;">
             <div rel="title">
                 Upload Bank Statements
             </div>
             <div rel="body" style="padding: 10px; line-height: 150%">
-                <input type="file" id="file-input" accept="text/csv" multiple/>
-                <button class="btn btn-secondary" id="upload-button">Upload File</button>       
+                <input type="file" class="file-upload" accept="text/csv" multiple/>
+                <button class="btn btn-secondary">Upload File</button>       
             </div>
         </div>
     </div>
@@ -84,8 +85,8 @@
             ]
         });
 
-        $(document).on('click', '#upload-button', function(event){
-            const fileInput = $('#file-input')[0];
+        $(document).on('click', '#w2ui-popup button', function(event){
+            const fileInput = $('#w2ui-popup input[type=file]')[0];
 
             if(fileInput.files.length == 0) {
                 alert('Error : No file selected');
