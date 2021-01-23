@@ -19,7 +19,14 @@ pathToDataBase = 'Transactions.db'
 with sql.connect(pathToDataBase) as con:
     cursor = con.cursor()
 
-    cursor.execute("INSERT INTO Transactions (ID,Date,TransactionType,Description,Value,CategoryID)VALUES(?,?,?,?,?,?)",(ID,Date,TransactionType,Description,Value,CategoryID) )
+    cursor.execute(
+        "INSERT INTO Transactions (ID,Date,TransactionType,Description,Value,CategoryID)VALUES(?,?,?,?,?,?)",
+        (ID,
+         Date,
+         TransactionType,
+         Description,
+         Value,
+         CategoryID))
 
     con.commit()
     msg = "Record successfully added"
