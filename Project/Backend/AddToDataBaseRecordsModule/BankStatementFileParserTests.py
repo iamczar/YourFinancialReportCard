@@ -2,6 +2,7 @@ import unittest
 import BankStatementFileParser
 from pathlib import Path
 import datetime
+from collections import namedtuple
 
 
 class BankStatementParserTest(unittest.TestCase):
@@ -143,7 +144,68 @@ class BankStatementParserTest(unittest.TestCase):
             a_transaction_object.Account_Number,
             a_transaction_object_from_a_list.Account_Number)
 
+    def test_TransactionObjectConstructorIsTheSameType(self):
+        '''
+        This is using the namedtuple "overload"
+        '''
+
+        a_transaction_object = BankStatementFileParser.Transaction(
+            '01 Jan 2020',
+            'Purchase',
+            "'LADY GODIVA BARS LONDON SE15",
+            '17.99',
+            '',
+            "'C B BALANGUE",
+            "'552213******9444")
+
+        valid_transaction_as_a_list = [
+            '01 Jan 2020',
+            'Purchase',
+            "'LADY GODIVA BARS LONDON SE15",
+            '17.99',
+            '',
+            "'C B BALANGUE",
+            "'552213******9444",
+            ""]
+
+        TransactionInfo = namedtuple('TransactionInfo',
+                                     'Date Type Description Value Balance Account_Name Account_Number blank')
+
+        tansaction_info_instance = TransactionInfo(
+            *valid_transaction_as_a_list)
+
+        a_transaction_object_from_a_namedtuple = BankStatementFileParser.Transaction.from_tuple(
+            tansaction_info_instance)
+
+        self.assertEqual(
+            type(a_transaction_object),
+            type(a_transaction_object_from_a_namedtuple))
+
+        # check against each element from a other contructor
+        self.assertEqual(
+            a_transaction_object.Date,
+            a_transaction_object_from_a_namedtuple.Date)
+        self.assertEqual(
+            a_transaction_object.Type,
+            a_transaction_object_from_a_namedtuple.Type)
+        self.assertEqual(
+            a_transaction_object.Description,
+            a_transaction_object_from_a_namedtuple.Description)
+        self.assertEqual(
+            a_transaction_object.Value,
+            a_transaction_object_from_a_namedtuple.Value)
+        self.assertEqual(
+            a_transaction_object.Balance,
+            a_transaction_object_from_a_namedtuple.Balance)
+        self.assertEqual(
+            a_transaction_object.Account_Name,
+            a_transaction_object_from_a_namedtuple.Account_Name)
+        self.assertEqual(
+            a_transaction_object.Account_Number,
+            a_transaction_object_from_a_namedtuple.Account_Number)
+
     # @unittest.skip("reason for skipping")
+
     def test_BankStatementDataParserException(self):
 
         list_with_less_that_seven_elements = [

@@ -31,6 +31,37 @@ class Transaction:
         self.Account_Name = Account_Name
         self.Account_Number = Account_Number
 
+    @classmethod
+    def from_list(cls, transaction_as_list):
+
+        if(len(transaction_as_list) < 7):
+            raise BankStatementDataParserException(
+                "Transaction: list does not contain enough elements")
+
+        return cls(
+
+            Date=transaction_as_list[0],
+            Type=transaction_as_list[1],
+            Description=transaction_as_list[2],
+            Value=transaction_as_list[3],
+            Balance=transaction_as_list[4],
+            Account_Name=transaction_as_list[5],
+            Account_Number=transaction_as_list[6],
+        )
+
+    @classmethod
+    def from_tuple(cls, data):
+
+        return cls(
+            Date=data.Date,
+            Type=data.Type,
+            Description=data.Description,
+            Value=data.Value,
+            Balance=data.Balance,
+            Account_Name=data.Account_Name,
+            Account_Number=data.Account_Number
+        )
+
     def normalise_date_into_epoch(self, date):
 
         # regular expression for this pattern -> 02 Dec 2019
@@ -66,36 +97,8 @@ class Transaction:
 
         return epoch_equivalend
 
-    @classmethod
-    def from_list(cls, transaction_as_list):
-
-        if(len(transaction_as_list) < 7):
-            raise BankStatementDataParserException(
-                "Transaction: list does not contain enough elements")
-
-        return cls(
-
-            Date=transaction_as_list[0],
-            Type=transaction_as_list[1],
-            Description=transaction_as_list[2],
-            Value=transaction_as_list[3],
-            Balance=transaction_as_list[4],
-            Account_Name=transaction_as_list[5],
-            Account_Number=transaction_as_list[6],
-        )
-
-    @classmethod
-    def from_tuple(cls, data):
-
-        return cls(
-            Date=data.Date,
-            Type=data.Type,
-            Description=data.Description,
-            Value=data.Value,
-            Balance=data.Balance,
-            Account_Name=data.Account_Name,
-            Account_Number=data.Account_Number
-        )
+    def normalise_date(self):
+        self.Date = self.normalise_date_into_epoch(self.Date)
 
 
 class BankStatementDataParser:
@@ -125,6 +128,10 @@ class BankStatementDataParser:
 
                 a_transaction_object = Transaction.from_tuple(
                     tansaction_info_instance)
+
+                # This converts the date member into epoch value i.e. number of
+                # seconds since jan 1 1970
+                a_transaction_object.normalise_date()
 
                 list_of_valid_transactions.append(a_transaction_object)
 
