@@ -4,7 +4,6 @@ from pathlib import Path
 import datetime
 from collections import namedtuple
 
-
 class BankStatementParserTest(unittest.TestCase):
 
     # @unittest.skip("reason for skipping")
@@ -222,7 +221,7 @@ class BankStatementParserTest(unittest.TestCase):
 
         firstDateFormat = '23 Dec 2020'
 
-        actual_epoch_time = a_transaction_object.normalise_date_into_epoch(
+        actual_epoch_time = a_transaction_object.convert_date_string_into_epoch(
             firstDateFormat)
 
         year = 2020
@@ -240,7 +239,7 @@ class BankStatementParserTest(unittest.TestCase):
 
         secondDateFormat = '02/12/2019'
 
-        actual_epoch_time = a_transaction_object.normalise_date_into_epoch(
+        actual_epoch_time = a_transaction_object.convert_date_string_into_epoch(
             secondDateFormat)
 
         year = 2019
