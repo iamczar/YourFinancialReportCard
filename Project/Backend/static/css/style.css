@@ -1,0 +1,10 @@
+.file-upload{
+    width: 100% !important;
+    height: 36px !important;
+    margin: 10px 0 !important;
+    border-radius: 4px !important;
+}
+
+.progress-container .progress{
+    margin: 3px 0;
+}

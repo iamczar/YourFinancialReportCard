@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="static/css/w2ui-1.4.min.css" />
+    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="static/css/style.css" />
+    <script src="static/scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="static/scripts/w2ui-1.4.min.js"></script>
+    <script type="text/javascript" src="static/scripts/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container" style="margin-top: 10px;">
+        <div class="row">
+            <div class="span12 navbar">
+                <div class="navbar-inner">
+                    <ul class="nav">
+                      <li><a href="/summary">Summary</a> </li>
+                      <li class="active"><a href="/data">Data</a></li>                      
+                      <li><a href="/settings">Settings</a></li>
+                    </ul>
+                    <ul class="nav pull-right">
+                      <li><a>ver 1.0</a></li>
+                    </ul>
+                </div>	
+            </div>
+        </div>
+        <div id="toolbar" style="padding: 4px; border: 1px solid #dfdfdf; border-radius: 3px"></div>
+        <div id="grid" style="height: 350px;"></div>
+        <div id="popup1" style="display: none; width: 600px; height: 400px;">
+            <div rel="title">
+                Upload Bank Statements
+            </div>
+            <div rel="body" style="padding: 10px; line-height: 150%">
+                <input type="file" class="file-upload" accept="text/csv" multiple/>
+                <div class="clearfix">
+                    <button class="btn btn-secondary pull-left">Upload File</button>
+                    <div class="progress-container span6">
+                        <div class="progress pull-left row-fluid">
+                            <div class="bar" style="width: 1%;"></div>
+                        </div>
+                        <span class="pull-left"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <script type="text/javascript" src="static/scripts/data.js"></script>
+</body>
+</html>

@@ -31,16 +31,34 @@ def allowed_file(filename):
 
 #     return str("<html><head></head><body>"+result+"</body></html>")
 
-@app.route('/upload-bankstatements')
+@app.route('/upload-bankstatements.html')
 def upload_form():
     return render_template('upload_bankstatements.html')
+
+@app.route('/')
+def index():
+    return render_template('summary.html')
+
+@app.route('/data')
+def data():
+    return render_template('data.html')
+
+@app.route('/summary')
+def summary():
+    return render_template('summary.html')
+
+@app.route('/settings')
+def settings():
+    return render_template('settings.html')
 
 @app.route('/upload-bankstatements',methods = ['POST'])
 def upload_file():
     if request.method == 'POST':
+        print(request.files)
         if 'files[]' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
+            return 'No file part'
+            #return flash('No file part')
+            #return redirect('/data?upload=true')
 
         files = request.files.getlist('files[]')
 
@@ -49,8 +67,8 @@ def upload_file():
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-        flash('File(s) successfully uploaded')
-        return redirect('/upload-bankstatements')
+        return 'File(s) successfully uploaded'
+        #return redirect('/data?upload=true')
 
 
 if __name__ == "__main__":
