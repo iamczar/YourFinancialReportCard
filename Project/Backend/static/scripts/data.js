@@ -1,4 +1,6 @@
 $(function () {
+    $('div.progress').hide();
+
     $('#toolbar').w2toolbar({
         name: 'toolbar',
         items: [
@@ -9,6 +11,7 @@ $(function () {
                 $('#popup1').w2popup({
                     onClose: function(){
                         $('#w2ui-popup span').text('');
+                        $('#w2ui-popup div.progress').hide();
                     }
                 });
             }
@@ -54,8 +57,10 @@ $(function () {
         const progressBar = $('#w2ui-popup .progress');
         const statusText = $('#w2ui-popup span');
 
+        statusText.text('');
+
         if(fileInputElement.files.length == 0) {
-            alert('Error : No file selected');
+            statusText.text('No file selected!');
             return;
         }
 
@@ -64,12 +69,12 @@ $(function () {
         let allowed_size_mb = 2;
     
         if(allowed_mime_types.indexOf(file.type) == -1) {
-            alert('Error : Incorrect file type');
+            statusText.text('Incorrect file type!');
             return;
         }
 
         if(file.size > allowed_size_mb*1024*1024) {
-            alert('Error : Exceeded size');
+            statusText.text('File exceeds maximum size!');
             return;
         }
 
@@ -83,7 +88,7 @@ $(function () {
         request.upload.addEventListener('progress', function(e) {
             let percent_complete = (e.loaded / e.total)*100;
             
-            progressBar.css("width", percent_complete);
+            progressBar.find('.bar').css("width", percent_complete + '%');
             // percentage of upload completed
             console.log(percent_complete);
         });
@@ -92,7 +97,7 @@ $(function () {
         request.addEventListener('load', function(e) {
             // HTTP status message
             console.log(request.status);
-            progressBar.hide();
+            //progressBar.hide();
 
             if(request.status === 200){
                 statusText.text('File(s) uploaded successfully.');
