@@ -1,31 +1,28 @@
 import sqlite3 as sql
-import Constants
+from ..Utils.Constants import *
 
 class CategoryRepository:
+
     def __init__(self):
-        print("hello")
+        pass
 
     def get_all(self):
-        
-        db_constants = Constants.Constants()
 
-        with sql.connect(db_constants.DB_PATH) as con:
-            cursor = con.cursor()
+        print(DB_PATH)
 
-            cursor.execute(
-                "INSERT INTO Transactions (ID,Date,TransactionType,Description,Value,CategoryID)VALUES(?,?,?,?,?,?)",
-                (ID,
-                Date,
-                TransactionType,
-                Description,
-                Value,
-                CategoryID))
+        # with sql.connect(DB_PATH) as con:
+        #     cursor = con.cursor()
 
-            con.commit()
-            msg = "Record successfully added"
+        #     cursor.execute(
+        #         "INSERT INTO Transactions (ID,Date,TransactionType,Description,Value,CategoryID)VALUES(?,?,?,?,?,?)",
+        #         (ID,
+        #         Date,
+        #         TransactionType,
+        #         Description,
+        #         Value,
+        #         CategoryID))
 
-        con.close()
+        #     con.commit()
+        #     msg = "Record successfully added"
 
-a = CategoryRepository()
-
-a.get_all()
+        # con.close()

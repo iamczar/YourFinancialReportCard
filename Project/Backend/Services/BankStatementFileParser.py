@@ -7,9 +7,7 @@ import datetime
 from collections import namedtuple
 
 """
-
 This module is to handle parsing bankstatements
-
 """
 
 class BankStatementDataParser:
