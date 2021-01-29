@@ -2,7 +2,6 @@ import os
 import shutil
 import sqlite3 as sql
 
-
 myCurrentWorkingDirectory = os.getcwd()
 print(myCurrentWorkingDirectory)
 

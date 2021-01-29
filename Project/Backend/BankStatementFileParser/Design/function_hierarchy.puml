@@ -1,7 +1,0 @@
-@startuml
-
-
-[parse_bankstatement(file.csv) --> 
-
-
-@enduml
