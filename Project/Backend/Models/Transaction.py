@@ -1,6 +1,12 @@
+import re
+import datetime
+from dateutil import parser
+
+from TransactionExeptions import TransactionExeption
+
 
 class Transaction:
-    
+
     def __init__(self, Date=None, Type=None, Description=None, Value=None,
                  Balance=None, Account_Name=None, Account_Number=None):
         self.Date = Date
@@ -15,8 +21,8 @@ class Transaction:
     @classmethod
     def from_list(cls, transaction_as_list):
 
-        if(len(transaction_as_list) < 7):
-            raise BankStatementDataParserException(
+        if len(transaction_as_list) < 7:
+            raise TransactionExeption(
                 "Transaction: list does not contain enough elements")
 
         return cls(
