@@ -1,9 +1,7 @@
 import re
 import datetime
 from dateutil import parser
-
-from TransactionExeptions import TransactionExeption
-
+from Project.Backend.Models.TransactionExeptions import TransactionException
 
 class Transaction:
 
@@ -22,7 +20,7 @@ class Transaction:
     def from_list(cls, transaction_as_list):
 
         if len(transaction_as_list) < 7:
-            raise TransactionExeption(
+            raise TransactionExeptions.TransactionException(
                 "Transaction: list does not contain enough elements")
 
         return cls(

@@ -2,7 +2,9 @@ import unittest
 from pathlib import Path
 import datetime
 from collections import namedtuple
-from Transaction import Transaction
+
+from Project.Backend.Models.Transaction import Transaction
+from Project.Backend.Models.Transaction import TransactionException
 
 
 class TransactionTest(unittest.TestCase):
@@ -118,7 +120,7 @@ class TransactionTest(unittest.TestCase):
             type(a_transaction_object),
             type(a_transaction_object_from_a_namedtuple))
 
-        # check against each element from a other contructor
+        # check against each element from a other constructor
         self.assertEqual(
             a_transaction_object.Date,
             a_transaction_object_from_a_namedtuple.Date)
@@ -143,7 +145,6 @@ class TransactionTest(unittest.TestCase):
 
     # @unittest.skip("reason for skipping")
     def test_normalise_date_first_format(self):
-
         a_transaction_object = Transaction()
 
         first_date_format = '23 Dec 2020'
@@ -161,7 +162,6 @@ class TransactionTest(unittest.TestCase):
 
     # @unittest.skip("reason for skipping")
     def test_normalise_date_second_format(self):
-
         a_transaction_object = Transaction()
 
         second_date_format = '02/12/2019'

@@ -1,18 +1,17 @@
 import unittest
-from .Services.BankStatementFileParser import BankStatementDataParser
+from Project.Backend.Utils.BankStatementFileParser import BankStatementDataParser
 from pathlib import Path
-import datetime
-from collections import namedtuple
+
 
 class BankStatementParserTest(unittest.TestCase):
-    
+
     # @unittest.skip("reason for skipping")
-    def test_parse_bankstatement(self):
+    def test_parse_statement(self):
         test_file_csv = Path(__file__).parent / \
-            "BankStatementFileParserTestFile.csv"
+                        "BankStatementFileParserTestFile.csv"
         bank_statement_parser = BankStatementDataParser()
 
-        list_of_valid_and_invalid_transactions = bank_statement_parser.parse_bankstatement(
+        list_of_valid_and_invalid_transactions = bank_statement_parser.parse_statement(
             test_file_csv)
 
         expected_number_valid_transactions = 92
@@ -35,7 +34,6 @@ class BankStatementParserTest(unittest.TestCase):
 
     # @unittest.skip("reason for skipping")
     def test_is_line_item_valid(self):
-
         valid_transaction_as_a_list = [
             '01 Jan 2020',
             'Purchase',
