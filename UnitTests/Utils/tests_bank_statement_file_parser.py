@@ -1,5 +1,5 @@
 import unittest
-from Project.Backend.Utils.BankStatementFileParser import BankStatementDataParser
+from Project.Backend.Utils.bank_statement_file_parser import BankStatementDataParser
 from pathlib import Path
 
 

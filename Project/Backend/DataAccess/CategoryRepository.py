@@ -1,5 +1,5 @@
 import sqlite3 as sql
-from ..Utils.Constants import *
+from ..Utils.constants import *
 
 class CategoryRepository:
 

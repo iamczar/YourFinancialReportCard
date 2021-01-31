@@ -1,10 +1,7 @@
 import unittest
-from pathlib import Path
 import datetime
 from collections import namedtuple
-
-from Project.Backend.Models.Transaction import Transaction
-from Project.Backend.Models.Transaction import TransactionException
+from Project.Backend.Models.transaction import Transaction
 
 
 class TransactionTest(unittest.TestCase):
@@ -84,9 +81,9 @@ class TransactionTest(unittest.TestCase):
             a_transaction_object_from_a_list.Account_Number)
 
     def test_TransactionObjectConstructorIsTheSameType(self):
-        '''
+        """
         This is using the namedtuple "overload"
-        '''
+        """
 
         a_transaction_object = Transaction(
             '01 Jan 2020',
@@ -110,11 +107,11 @@ class TransactionTest(unittest.TestCase):
         TransactionInfo = namedtuple('TransactionInfo',
                                      'Date Type Description Value Balance Account_Name Account_Number blank')
 
-        tansaction_info_instance = TransactionInfo(
+        transaction_info_instance = TransactionInfo(
             *valid_transaction_as_a_list)
 
         a_transaction_object_from_a_namedtuple = Transaction.from_tuple(
-            tansaction_info_instance)
+            transaction_info_instance)
 
         self.assertEqual(
             type(a_transaction_object),

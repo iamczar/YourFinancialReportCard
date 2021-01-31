@@ -1,5 +1,5 @@
 import csv
-from Project.Backend.Models.Transaction import Transaction
+from Project.Backend.Models.transaction import Transaction
 from collections import namedtuple
 
 """

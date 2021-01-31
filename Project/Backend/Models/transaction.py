@@ -1,7 +1,8 @@
 import re
 import datetime
 from dateutil import parser
-from Project.Backend.Models.TransactionExeptions import TransactionException
+from Project.Backend.Models.transaction_exeptions import TransactionException
+
 
 class Transaction:
 
@@ -20,8 +21,7 @@ class Transaction:
     def from_list(cls, transaction_as_list):
 
         if len(transaction_as_list) < 7:
-            raise TransactionExeptions.TransactionException(
-                "Transaction: list does not contain enough elements")
+            raise TransactionException("Transaction: list does not contain enough elements")
 
         return cls(
 
@@ -50,12 +50,12 @@ class Transaction:
     def convert_date_string_into_epoch(self, date):
 
         # regular expression for this pattern -> 02 Dec 2019
-        firstDateFormat = r'\d{2}\s\D{3}\s\d{4}'
+        first_date_format = r'\d{2}\s\D{3}\s\d{4}'
 
         # regular expression forthis pattern ->  02/12/2019
-        secondDateFormat = r'\d{2}/\d{2}/\d{4}'
+        second_date_format = r'\d{2}/\d{2}/\d{4}'
 
-        if re.search(firstDateFormat, date) is not None:
+        if re.search(first_date_format, date) is not None:
             # this format -> 02 Dec 2019
             for each_date_element in date.splitlines():
                 date = parser.parse(each_date_element)
@@ -64,10 +64,10 @@ class Transaction:
             month = int(date.strftime("%m"))
             date = int(date.strftime("%d"))
 
-            epoch_equivalend = datetime.datetime(
+            epoch_equivalent = datetime.datetime(
                 year, month, date, 0, 0).timestamp()
 
-        elif re.search(secondDateFormat, date) is not None:
+        elif re.search(second_date_format, date) is not None:
             # this format -> 02/12/2019
 
             for each_date_element in date.splitlines():
@@ -77,10 +77,10 @@ class Transaction:
             month = int(date.strftime("%m"))
             date = int(date.strftime("%d"))
 
-            epoch_equivalend = datetime.datetime(
+            epoch_equivalent = datetime.datetime(
                 year, month, date, 0, 0).timestamp()
 
-        return epoch_equivalend
+        return epoch_equivalent
 
     def normalise_date(self):
         self.Date = self.convert_date_string_into_epoch(self.Date)
