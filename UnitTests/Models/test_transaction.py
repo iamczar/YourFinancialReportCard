@@ -36,49 +36,49 @@ class TransactionTest(unittest.TestCase):
 
         # check against each element
         self.assertEqual(
-            a_transaction_object.Date,
+            a_transaction_object.date,
             valid_transaction_as_a_list[0])
         self.assertEqual(
-            a_transaction_object.Type,
+            a_transaction_object.type,
             valid_transaction_as_a_list[1])
         self.assertEqual(
-            a_transaction_object.Description,
+            a_transaction_object.description,
             valid_transaction_as_a_list[2])
         self.assertEqual(
-            a_transaction_object.Value,
+            a_transaction_object.value,
             valid_transaction_as_a_list[3])
         self.assertEqual(
-            a_transaction_object.Balance,
+            a_transaction_object.balance,
             valid_transaction_as_a_list[4])
         self.assertEqual(
-            a_transaction_object.Account_Name,
+            a_transaction_object.account_name,
             valid_transaction_as_a_list[5])
         self.assertEqual(
-            a_transaction_object.Account_Number,
+            a_transaction_object.account_number,
             valid_transaction_as_a_list[6])
 
         # check against each element from a other contructor
         self.assertEqual(
-            a_transaction_object.Date,
-            a_transaction_object_from_a_list.Date)
+            a_transaction_object.date,
+            a_transaction_object_from_a_list.date)
         self.assertEqual(
-            a_transaction_object.Type,
-            a_transaction_object_from_a_list.Type)
+            a_transaction_object.type,
+            a_transaction_object_from_a_list.type)
         self.assertEqual(
-            a_transaction_object.Description,
-            a_transaction_object_from_a_list.Description)
+            a_transaction_object.description,
+            a_transaction_object_from_a_list.description)
         self.assertEqual(
-            a_transaction_object.Value,
-            a_transaction_object_from_a_list.Value)
+            a_transaction_object.value,
+            a_transaction_object_from_a_list.value)
         self.assertEqual(
-            a_transaction_object.Balance,
-            a_transaction_object_from_a_list.Balance)
+            a_transaction_object.balance,
+            a_transaction_object_from_a_list.balance)
         self.assertEqual(
-            a_transaction_object.Account_Name,
-            a_transaction_object_from_a_list.Account_Name)
+            a_transaction_object.account_name,
+            a_transaction_object_from_a_list.account_name)
         self.assertEqual(
-            a_transaction_object.Account_Number,
-            a_transaction_object_from_a_list.Account_Number)
+            a_transaction_object.account_number,
+            a_transaction_object_from_a_list.account_number)
 
     def test_TransactionObjectConstructorIsTheSameType(self):
         """
@@ -105,7 +105,7 @@ class TransactionTest(unittest.TestCase):
             ""]
 
         TransactionInfo = namedtuple('TransactionInfo',
-                                     'Date Type Description Value Balance Account_Name Account_Number blank')
+                                     'date type description value balance account_name account_number blank')
 
         transaction_info_instance = TransactionInfo(
             *valid_transaction_as_a_list)
@@ -119,26 +119,26 @@ class TransactionTest(unittest.TestCase):
 
         # check against each element from a other constructor
         self.assertEqual(
-            a_transaction_object.Date,
-            a_transaction_object_from_a_namedtuple.Date)
+            a_transaction_object.date,
+            a_transaction_object_from_a_namedtuple.date)
         self.assertEqual(
-            a_transaction_object.Type,
-            a_transaction_object_from_a_namedtuple.Type)
+            a_transaction_object.type,
+            a_transaction_object_from_a_namedtuple.type)
         self.assertEqual(
-            a_transaction_object.Description,
-            a_transaction_object_from_a_namedtuple.Description)
+            a_transaction_object.description,
+            a_transaction_object_from_a_namedtuple.description)
         self.assertEqual(
-            a_transaction_object.Value,
-            a_transaction_object_from_a_namedtuple.Value)
+            a_transaction_object.value,
+            a_transaction_object_from_a_namedtuple.value)
         self.assertEqual(
-            a_transaction_object.Balance,
-            a_transaction_object_from_a_namedtuple.Balance)
+            a_transaction_object.balance,
+            a_transaction_object_from_a_namedtuple.balance)
         self.assertEqual(
-            a_transaction_object.Account_Name,
-            a_transaction_object_from_a_namedtuple.Account_Name)
+            a_transaction_object.account_name,
+            a_transaction_object_from_a_namedtuple.account_name)
         self.assertEqual(
-            a_transaction_object.Account_Number,
-            a_transaction_object_from_a_namedtuple.Account_Number)
+            a_transaction_object.account_number,
+            a_transaction_object_from_a_namedtuple.account_number)
 
     # @unittest.skip("reason for skipping")
     def test_normalise_date_first_format(self):

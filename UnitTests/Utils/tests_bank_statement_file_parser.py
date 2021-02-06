@@ -5,7 +5,6 @@ from pathlib import Path
 
 class BankStatementParserTest(unittest.TestCase):
 
-    # @unittest.skip("reason for skipping")
     def test_parse_statement(self):
         test_file_csv = Path(__file__).parent / \
                         "BankStatementFileParserTestFile.csv"
@@ -32,7 +31,6 @@ class BankStatementParserTest(unittest.TestCase):
             expected_number_invalid_transactions,
             actual_number_invalid_transactions)
 
-    # @unittest.skip("reason for skipping")
     def test_is_line_item_valid(self):
         valid_transaction_as_a_list = [
             '01 Jan 2020',

@@ -6,16 +6,16 @@ from Project.Backend.Models.transaction_exeptions import TransactionException
 
 class Transaction:
 
-    def __init__(self, Date=None, Type=None, Description=None, Value=None,
-                 Balance=None, Account_Name=None, Account_Number=None):
-        self.Date = Date
-        self.Type = Type
-        self.Description = Description
-        self.Value = Value
-        self.Balance = Balance
-        self.Account_Name = Account_Name
-        self.Account_Number = Account_Number
-        self.CategoryID = 0
+    def __init__(self, date=None, type=None, description=None, value=None,
+                 balance=None, account_name=None, account_number=None):
+        self.date = date
+        self.type = type
+        self.description = description
+        self.value = value
+        self.balance = balance
+        self.account_name = account_name
+        self.account_number = account_number
+        self.category_id = 0
 
     @classmethod
     def from_list(cls, transaction_as_list):
@@ -25,26 +25,26 @@ class Transaction:
 
         return cls(
 
-            Date=transaction_as_list[0],
-            Type=transaction_as_list[1],
-            Description=transaction_as_list[2],
-            Value=transaction_as_list[3],
-            Balance=transaction_as_list[4],
-            Account_Name=transaction_as_list[5],
-            Account_Number=transaction_as_list[6],
+            date=transaction_as_list[0],
+            type=transaction_as_list[1],
+            description=transaction_as_list[2],
+            value=transaction_as_list[3],
+            balance=transaction_as_list[4],
+            account_name=transaction_as_list[5],
+            account_number=transaction_as_list[6],
         )
 
     @classmethod
     def from_tuple(cls, data):
 
         return cls(
-            Date=data.Date,
-            Type=data.Type,
-            Description=data.Description,
-            Value=data.Value,
-            Balance=data.Balance,
-            Account_Name=data.Account_Name,
-            Account_Number=data.Account_Number
+            date=data.date,
+            type=data.type,
+            description=data.description,
+            value=data.value,
+            balance=data.balance,
+            account_name=data.account_name,
+            account_number=data.account_number
         )
 
     def convert_date_string_into_epoch(self, date):
@@ -83,4 +83,4 @@ class Transaction:
         return epoch_equivalent
 
     def normalise_date(self):
-        self.Date = self.convert_date_string_into_epoch(self.Date)
+        self.date = self.convert_date_string_into_epoch(self.date)

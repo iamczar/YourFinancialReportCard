@@ -1,1 +1,1 @@
-DB_PATH = "Database/Transactions"
+DB_PATH = "Database/Models"

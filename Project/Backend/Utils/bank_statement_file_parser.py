@@ -2,17 +2,21 @@ import csv
 from Project.Backend.Models.transaction import Transaction
 from collections import namedtuple
 
-"""
-This module is to handle parsing bankstatements
-"""
-
-
 class BankStatementDataParser:
+
+    """
+    this module is responsible for parsing a given bank statement
+    """
 
     def __init__(self):
         pass
 
     def parse_statement(self, csv_full_file_path):
+        """
+        it returns valid and invalid transactions
+        :param csv_full_file_path:
+        :return: a tuple of list
+        """
 
         bank_statement_data = open(csv_full_file_path)
         bank_statement_csv_data = csv.reader(bank_statement_data)
@@ -23,7 +27,7 @@ class BankStatementDataParser:
         list_of_valid_transactions = []
 
         TransactionInfo = namedtuple('TransactionInfo',
-                                     'Date Type Description Value Balance Account_Name Account_Number CategoryID')
+                                     'date type description value balance account_name account_number category_id')
 
         for each_line_item in list_of_line_items:
 
@@ -44,17 +48,15 @@ class BankStatementDataParser:
 
         bank_statement_data.close()
 
-        return (list_of_valid_transactions, list_of_invalid_transactions)
+        return list_of_valid_transactions, list_of_invalid_transactions
 
     def is_line_item_valid(self, line_item):
 
         is_a_valid_line_item = True
         valid_number_of_line_item = 7
-        if (len(line_item) < valid_number_of_line_item):
-            # print(f"line item has less than {valid_number_of_line_item} it is " + str(len(line_item)))
+        if len(line_item) < valid_number_of_line_item:
             is_a_valid_line_item = False
-        elif ([] == line_item):  # if line item is empty
-            # print("BankStatementDataParser: line item is empty")
+        elif not line_item:  # if line item is empty
             is_a_valid_line_item = False
         elif ("Date" == line_item[0] or
               "Type" == line_item[1] or
